@@ -188,6 +188,8 @@ env.Append(
         join(FRAMEWORK_DIR, "cores", "arduino", "stm32", "usb", "hid"),
         join(FRAMEWORK_DIR, "cores", "arduino", "stm32", "usb", "cdc"),
         join(FRAMEWORK_DIR, "cores", "arduino", "stm32", "usb_host"),
+        join(FRAMEWORK_DIR, "cores", "arduino", "stm32", "usb", "msc"),
+        join(FRAMEWORK_DIR, "cores", "arduino", "stm32", "usb", "cdc_msc"),
         join(FRAMEWORK_DIR, "system", "Drivers", series + "_HAL_Driver", "Inc"),
         join(FRAMEWORK_DIR, "system", "Drivers", series + "_HAL_Driver", "Src"),
         join(FRAMEWORK_DIR, "system", series),

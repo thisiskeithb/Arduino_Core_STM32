@@ -28,7 +28,7 @@
   #include "USBMscHandler.h"
 #endif
 
-class USB {
+class USBComposite {
   public:
 #ifdef USBD_USE_MSC_CLASS
     void registerMscHandler(USBMscHandler &pHandler);
@@ -52,7 +52,7 @@ class USB {
 #endif
 };
 
-extern USB USBDevice;
+extern USBComposite USBDevice;
 
 #endif // USBCON
 #endif // _USB_H_

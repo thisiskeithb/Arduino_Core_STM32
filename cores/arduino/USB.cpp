@@ -33,9 +33,9 @@
   #include "usbd_msc_storage_if.h"
 #endif
 
-USB USBDevice;
+USBComposite USBDevice;
 
-void USB::begin()
+void USBComposite::begin()
 {
   if (!initialized) {
     initialize();
@@ -45,13 +45,13 @@ void USB::begin()
 #ifdef USBD_USE_MSC_CLASS
 DummyUSBMscHandler dummyHandler;
 
-void USB::registerMscHandler(USBMscHandler &handler)
+void USBComposite::registerMscHandler(USBMscHandler &handler)
 {
   pSingleMscHandler = &handler;
   registerMscHandlers(1, &pSingleMscHandler, USBD_MSC_fops.pInquiry);
 }
 
-void USB::registerMscHandlers(uint8_t count, USBMscHandler **ppHandlers, uint8_t *pInquiryData)
+void USBComposite::registerMscHandlers(uint8_t count, USBMscHandler **ppHandlers, uint8_t *pInquiryData)
 {
   if (count == 0) {
     registerMscHandler(dummyHandler);
@@ -63,7 +63,7 @@ void USB::registerMscHandlers(uint8_t count, USBMscHandler **ppHandlers, uint8_t
 }
 #endif
 
-void USB::initialize()
+void USBComposite::initialize()
 {
   hUSBD_Device_CDC = &hUSBD_Device;
 
@@ -109,14 +109,14 @@ void USB::initialize()
   initialized = true;
 }
 
-void USB::end()
+void USBComposite::end()
 {
   if (initialized) {
     deinitialize();
   }
 }
 
-void USB::deinitialize()
+void USBComposite::deinitialize()
 {
   USBD_Stop(&hUSBD_Device);
   USBD_DeInit(&hUSBD_Device);

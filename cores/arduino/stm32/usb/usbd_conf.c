@@ -529,7 +529,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 #else
   uint32_t offset = PMA_BASE_OFFSET;
   for (uint32_t i = 0; i < (DEV_NUM_EP + 1); i++) {
-    ep_desc_t *pDesc = &ep_def[i];
+    const ep_desc_t *pDesc = &ep_def[i];
     uint32_t size = pDesc->ep_size;
     uint32_t address = offset;
     if (pDesc->ep_kind == PCD_DBL_BUF) {

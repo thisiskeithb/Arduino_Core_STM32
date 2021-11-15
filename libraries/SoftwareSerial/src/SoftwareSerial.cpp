@@ -181,11 +181,11 @@ bool SoftwareSerial::stopListening()
 
 inline void SoftwareSerial::setTX()
 {
-  if (_inverse_logic) {
-    LL_GPIO_ResetOutputPin(_transmitPinPort, _transmitPinNumber);
-  } else {
-    LL_GPIO_SetOutputPin(_transmitPinPort, _transmitPinNumber);
-  }
+  //if (_inverse_logic) {
+  //  LL_GPIO_ResetOutputPin(_transmitPinPort, _transmitPinNumber);
+  //} else {
+  //  LL_GPIO_SetOutputPin(_transmitPinPort, _transmitPinNumber);
+  //}
   pinMode(_transmitPin, OUTPUT);
 }
 

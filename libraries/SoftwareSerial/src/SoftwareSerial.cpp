@@ -148,7 +148,9 @@ bool SoftwareSerial::listen()
   if (active_listener != this) {
     // wait for any transmit to complete as we may change speed
     while (active_out);
-    active_listener->stopListening();
+    if (active_listener != nullptr) {
+      active_listener->stopListening();
+    }
     rx_tick_cnt = 1; // 1 : next interrupt will decrease rx_tick_cnt to 0 which means RX pin level will be considered.
     rx_bit_cnt = -1; // rx_bit_cnt = -1 :  waiting for start bit
     setSpeed(_speed);
@@ -181,11 +183,11 @@ bool SoftwareSerial::stopListening()
 
 inline void SoftwareSerial::setTX()
 {
-  //if (_inverse_logic) {
-  //  LL_GPIO_ResetOutputPin(_transmitPinPort, _transmitPinNumber);
-  //} else {
-  //  LL_GPIO_SetOutputPin(_transmitPinPort, _transmitPinNumber);
-  //}
+  if (_inverse_logic) {
+    LL_GPIO_ResetOutputPin(_transmitPinPort, _transmitPinNumber);
+  } else {
+    LL_GPIO_SetOutputPin(_transmitPinPort, _transmitPinNumber);
+  }
   pinMode(_transmitPin, OUTPUT);
 }
 
